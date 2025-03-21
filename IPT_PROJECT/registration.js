@@ -16,3 +16,20 @@ function showMessageModal(message, type) {
         }
     };
 }
+
+document.querySelectorAll('.wave-group input').forEach(input => {
+    input.addEventListener('focus', () => {
+        let chars = input.nextElementSibling.querySelectorAll('.label-char');
+        chars.forEach((char, index) => {
+            char.style.animation = `wave 0.6s ease-in-out ${index * 0.1}s`;
+        });
+    });
+
+    input.addEventListener('blur', () => {
+        let chars = input.nextElementSibling.querySelectorAll('.label-char');
+        chars.forEach(char => {
+            char.style.animation = 'none';
+        });
+    });
+});
+
