@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($data as $user) {
             if ($user["email"] === $email && password_verify($password, $user["password"])) {
                 $_SESSION["user"] = $user["name"];
-                header("Location: dashboard.php");
+                header("Location: index.php");
                 exit();
             }
         }
