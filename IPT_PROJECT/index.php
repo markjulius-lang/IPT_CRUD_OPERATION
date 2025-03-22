@@ -8,8 +8,7 @@ if (!is_array($tasks)) {
     $tasks = [];
 }
 
-function generateId()
-{
+function generateId() {
     return bin2hex(random_bytes(6)); // 12-character unique ID
 }
 
@@ -64,73 +63,76 @@ if (isset($_GET['edit'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager (JSON)</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; background: #222; color: white; text-align: center; }
+        .container { width: 50%; margin: auto; background: #333; padding: 20px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; background: #444; margin-top: 10px; }
+        th, td { padding: 10px; border: 1px solid #666; text-align: left; }
+        th { background: #555; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 14px; cursor: pointer; border: none; }
+        .btn-delete { background: red; color: white; }
+        .btn-edit { background: blue; color: white; }
+        .btn-submit { background: green; color: white; }
+        input[type="text"] { padding: 5px; margin-bottom: 10px; width: 80%; }
+        .message { background: green; color: white; padding: 10px; margin-bottom: 10px; display: none; }
+    </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <h2>Task Manager</h2>
+<div class="container">
+    <h2>Task Manager (JSON)</h2>
 
-        <div id="messageBox" class="message"><?= $_SESSION['message'] ?? '' ?></div>
-        <?php unset($_SESSION['message']); ?>
+    <div id="messageBox" class="message"><?= $_SESSION['message'] ?? '' ?></div>
+    <?php unset($_SESSION['message']); ?>
 
-        <form method="POST">
-            <input type="text" name="task" class="input" placeholder="Enter Task" value="<?= $editTask['task'] ?? '' ?>" required>
-            <?php if ($editTask): ?>
-                <input type="hidden" name="edit_id" value="<?= $editTask['id'] ?>">
-                <button type="submit" class="btn btn-submit"><span>&#9998;</span> Update Task</button>
-                <a href="index.php" class="btn btn-cancel">Cancel</a>
-            <?php else: ?>
-                <button type="submit" class="btn btn-submit"><span>&#10133;</span> Add Task</button>
+    <form method="POST">
+        <input type="text" name="task" placeholder="Enter Task" value="<?= $editTask['task'] ?? '' ?>" required>
+        <?php if ($editTask): ?>
+            <input type="hidden" name="edit_id" value="<?= $editTask['id'] ?>">
+            <button type="submit" class="btn btn-submit">Update Task</button>
+            <a href="index.php" class="btn">Cancel</a>
+        <?php else: ?>
+            <button type="submit" class="btn btn-submit">Add Task</button>
+        <?php endif; ?>
+    </form>
+
+    <table>
+        <tr>
+            <th>ID</th><th>Task</th><th>Edit</th><th>Delete</th>
+        </tr>
+        <?php foreach ($tasks as $task): ?>
+            <?php if (isset($task['id']) && isset($task['task'])): ?>
+                <tr>
+                    <td><?= htmlspecialchars($task['id']) ?></td>
+                    <td><?= htmlspecialchars($task['task']) ?></td>
+                    <td><a href="index.php?edit=<?= $task['id'] ?>" class="btn btn-edit">Edit</a></td>
+                    <td><a href="index.php?delete=<?= $task['id'] ?>" class="btn btn-delete" onclick="return confirmDelete()">Delete</a></td>
+                </tr>
             <?php endif; ?>
-        </form>
+        <?php endforeach; ?>
+    </table>
+</div>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
-            <?php foreach ($tasks as $task): ?>
-                <?php if (isset($task['id']) && isset($task['task'])): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($task['id']) ?></td>
-                        <td><?= htmlspecialchars($task['task']) ?></td>
-                        <td>
-                            <a href="index.php?edit=<?= $task['id'] ?>" class="btn btn-edit"><span>&#9998;</span></a>
-                            <a href="index.php?delete=<?= $task['id'] ?>" class="btn btn-delete" onclick="return confirmDelete()"><span>&#128465;</span></a>
-                            <a href="#" class="btn btn-view"><span>&#128065;</span></a>
-                        </td>
-                    </tr>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </table>
-    </div>
-
-    <script>
-        // Display message if exists
-        window.onload = function() {
-            let messageBox = document.getElementById("messageBox");
-            if (messageBox.innerText.trim() !== "") {
-                messageBox.style.display = "block";
-                setTimeout(() => {
-                    messageBox.style.display = "none";
-                }, 3000);
-            }
-        };
-
-        // Confirm before deleting
-        function confirmDelete() {
-            return confirm("Are you sure you want to delete this task?");
+<script>
+    // Display message if exists
+    window.onload = function() {
+        let messageBox = document.getElementById("messageBox");
+        if (messageBox.innerText.trim() !== "") {
+            messageBox.style.display = "block";
+            setTimeout(() => {
+                messageBox.style.display = "none";
+            }, 3000);
         }
-    </script>
+    };
+
+    // Confirm before deleting
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this task?");
+    }
+</script>
 
 </body>
-
 </html>
