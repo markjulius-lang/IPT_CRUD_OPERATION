@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2D2B28;
+  margin: 0;
+  color: #EDE0D4;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Form Container */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #4A3F35;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 136, 0, 0.5);
+  width: 320px;
+  margin: auto;
+}
+
+/* Input Field Container */
+.wave-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Input Fields */
+.wave-group .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #EDE0D4;
+  background: transparent;
+  color: #EDE0D4;
+  outline: none;
+}
+
+/* Animated Label */
+.wave-group .label {
+  color: #B8A89D;
+  font-size: 16px;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+}
+
+/* Label Animation */
+.wave-group .label-char {
+  transition: 0.2s ease all;
+  transition-delay: calc(var(--index) * 0.05s);
+}
+
+.wave-group .input:focus ~ .label .label-char,
+.wave-group .input.filled ~ .label .label-char {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #FF8C00;
+}
+
+/* Input Bottom Bar Animation */
+.wave-group .bar {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.wave-group .bar:before,
+.wave-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #FF8C00;
+  transition: 0.3s ease-in-out;
+}
+
+.wave-group .bar:before {
+  left: 50%;
+}
+
+.wave-group .bar:after {
+  right: 50%;
+}
+
+.wave-group .input:focus ~ .bar:before,
+.wave-group .input:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* Button */
+button {
+  background: #FF8C00;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #D97500;
+}
+
+/* Links */
+p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #B8A89D;
+}
+
+a {
+  color: #FF8C00;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+

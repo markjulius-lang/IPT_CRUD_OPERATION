@@ -1,0 +1,280 @@
+/* Base styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2D2B28; /* Dark background for neon effect */
+    margin: 0;
+    padding: 0;
+    color: #EDE0D4;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #4A3F35;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.5); /* Neon orange glow */
+}
+
+/* Message Box Style (Pop-up neon) */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(-30px); /* Slide-in effect */
+}
+
+.message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Slide-up effect */
+}
+
+/* Neon Input Fields */
+input[type="text"], .btn {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #EDE0D4; /* Light border for neon feel */
+    border-radius: 5px;
+    width: 100%;
+    background-color: transparent;
+    color: #EDE0D4;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.5); /* Neon glowing effect */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, .btn:focus {
+    box-shadow: 0 0 20px rgba(255, 136, 0, 0.7); /* Neon glowing effect when focused */
+}
+
+/* Button Styles (Neon) */
+.btn {
+    background-color: #FF8C00; /* Neon orange background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #D97500; /* Darker neon orange */
+    box-shadow: 0 0 15px rgba(255, 136, 0, 0.9); /* Glowing neon effect */
+}
+
+/* Specific button styles */
+.btn-submit {
+    background-color: #FF8C00; /* Neon Orange */
+}
+
+.btn-cancel {
+    background-color: #6c757d; /* Grey */
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268; /* Darker grey */
+}
+
+.btn-edit, .btn-delete, .btn-view {
+    background-color: #FFC107; /* Neon Yellow */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-edit:hover, .btn-delete:hover, .btn-view:hover {
+    background-color: #e0a800; /* Darker yellow */
+    box-shadow: 0 0 15px rgba(255, 136, 0, 0.7); /* Neon glow */
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: #dc3545; /* Red Neon */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Darker red */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Neon red glow */
+}
+
+/* View button */
+.btn-view {
+    background-color: #28a745; /* Green Neon */
+}
+
+.btn-view:hover {
+    background-color: #218838; /* Darker green */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Neon green glow */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+/* Neon table row hover */
+tr:hover {
+    background-color: #3e3b32;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.5);
+}
+
+/* Neon Style Links */
+a {
+    color: #FF8C00; /* Neon orange color */
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #D97500; /* Hover effect */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 136, 0, 0.5);
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style for date input fields */
+input[type="date"] {
+    background-color: transparent;
+    color: #EDE0D4;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #FF8C00; /* Neon orange border */
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input[type="date"]:focus {
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.7); /* Neon glow effect */
+    border-color: #FF8C00;
+}
+
+/* Style for Created At and Due Date columns in the table */
+table th, table td {
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #3e3b32;
+    color: #FF8C00; /* Neon orange for headers */
+}
+
+table td {
+    background-color: #4A3F35;
+    color: #EDE0D4;
+}
+
+table td span {
+    color: #FF8C00; /* Neon glow effect for date text */
+    font-weight: bold;
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #3e3b32;
+    box-shadow: 0 0 10px rgba(255, 136, 0, 0.5); /* Neon glow effect */
+}
+
+/* Style for the date labels in the form */
+.wave-group .label {
+    color: #B8A89D;
+    font-size: 16px;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+}
+
+/* Animate the date label when the field is filled or focused */
+input[type="date"]:focus ~ .label,
+input[type="date"].filled ~ .label {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #FF8C00; /* Neon orange on focus */
+}
+
+/* Adding some space between input fields */
+input[type="text"], input[type="date"], .btn {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
